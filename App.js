@@ -6,44 +6,65 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from "react";
+import { Platform, StyleSheet, Text, View, Button } from "react-native";
+import { createAppContainer, createStackNavigator } from "react-navigation";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+//screens
+import SimpleAnimation from "./Screens/simpleAnimation";
+import MoveAnimation from "./Screens/moveAnimation";
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
+  render() {
+    return <AppContainer />;
+  }
+}
+
+class Home extends Component {
+  static navigationOptions = {
+    header: null
+  };
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <View style={styles.Buttons}>
+          <Button
+            title="Simple Animation"
+            onPress={() => this.props.navigation.navigate("SimpleAnimation")} //-----------------------------simple animation Button
+          />
+        </View>
+        <View style={styles.Buttons}>
+          <Button
+            title="Moving Animation"
+            onPress={() => this.props.navigation.navigate("MoveAnimation")} //-----------------------------moving animation Button
+          />
+        </View>
       </View>
     );
   }
 }
 
+const stackNavigator = createStackNavigator(
+  {
+    Home: Home,
+    SimpleAnimation: SimpleAnimation,
+    MoveAnimation: MoveAnimation
+  }
+  // {
+  //   initialRouteName: "SimpleAnimation"
+  // }
+);
+
+const AppContainer = createAppContainer(stackNavigator);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  Buttons: {
+    margin: 10
+  }
 });
