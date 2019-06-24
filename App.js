@@ -13,6 +13,7 @@ import { createAppContainer, createStackNavigator } from "react-navigation";
 //screens
 import SimpleAnimation from "./Screens/simpleAnimation";
 import MoveAnimation from "./Screens/moveAnimation";
+import SpringAnimation from "./Screens/springAnimation";
 
 export default class App extends Component {
   render() {
@@ -39,6 +40,12 @@ class Home extends Component {
             onPress={() => this.props.navigation.navigate("MoveAnimation")} //-----------------------------moving animation Button
           />
         </View>
+        <View style={styles.Buttons}>
+          <Button
+            title="Spring Animation"
+            onPress={() => this.props.navigation.navigate("SpringAnimation")} //-----------------------------moving animation Button
+          />
+        </View>
       </View>
     );
   }
@@ -48,7 +55,8 @@ const stackNavigator = createStackNavigator(
   {
     Home: Home,
     SimpleAnimation: SimpleAnimation,
-    MoveAnimation: MoveAnimation
+    MoveAnimation: MoveAnimation,
+    SpringAnimation: SpringAnimation
   }
   // {
   //   initialRouteName: "SimpleAnimation"

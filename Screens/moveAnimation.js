@@ -23,10 +23,21 @@ export default class MoveAnimation extends Component {
   _moveAnimation = () => {
     // alert("move animation!");
     Animated.timing(this.state.xValue, {
-      toValue: 300,
-      duration: 500,
-      asing: Easing.linear
-    }).start();
+      toValue: 200,
+      duration: 1000,
+      easing: Easing.linear,
+      //   easing: Easing.back()
+      //   easing: Easing.circle
+      easing: Easing.cubic
+    }).start(() =>
+      Animated.timing(this.state.xValue, {
+        toValue: 0,
+        duration: 1000,
+        easing: Easing.linear
+      }).start(() => {
+        this._moveAnimation();
+      })
+    );
   };
 
   render() {
@@ -34,7 +45,7 @@ export default class MoveAnimation extends Component {
       <View style={styles.container}>
         <Text style={{ textAlign: "center" }}>Moving Animation</Text>
         <Animated.View
-          style={[styles.AnimatedView, { bottom: this.state.xValue }]}
+          style={[styles.AnimatedView, { left: this.state.xValue }]}
         />
         <Button title="Press to Move" onPress={this._moveAnimation} />
       </View>
