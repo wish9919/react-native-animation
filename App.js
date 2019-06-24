@@ -36,12 +36,14 @@ class Home extends Component {
         </View>
         <View style={styles.Buttons}>
           <Button
+            color="#0e0"
             title="Moving Animation"
             onPress={() => this.props.navigation.navigate("MoveAnimation")} //-----------------------------moving animation Button
           />
         </View>
         <View style={styles.Buttons}>
           <Button
+            color="#FF2323"
             title="Spring Animation"
             onPress={() => this.props.navigation.navigate("SpringAnimation")} //-----------------------------moving animation Button
           />
